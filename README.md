@@ -1,5 +1,6 @@
 ## Chadwick Bureau Baseball Databank to MongoDB Utility
 [Chadwick Bureau Baseball Databank](https://github.com/chadwickbureau/baseballdatabank "Chadwick Bureau Baseball Databank").
+[GitHub](https://github.com/mswilson4040/chadwick-to-mongo "GitHub").
 
 ### Run Script
 1. Clone Repo
