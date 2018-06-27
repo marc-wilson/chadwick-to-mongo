@@ -5,11 +5,9 @@ import 'csvtojson';
 
 export class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
-    // private _mongodb: MongoClient;
     private _git = require('nodegit');
     private _csv = require('csvtojson');
     constructor() {
-        // this._mongodb = require('mongodb').MongoClient;
         this.init();
     }
     async init(): Promise<void> {
@@ -20,11 +18,8 @@ export class ChadwickToMongo {
         // TODO: Step 2: Drop Database
         await this.dropDatabase();
 
-        // TODO: Step 3: Create Database
+        // TODO: Step 3: Create Database with Collections
         await this.createDatabase();
-
-
-
     }
     async connect(): Promise<MongoClient> {
         const client = await MongoClient.connect(`${this.MONGODB_PATH}`);
