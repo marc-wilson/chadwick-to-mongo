@@ -5,11 +5,11 @@ import 'csvtojson';
 
 export class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
-    private _mongodb: MongoClient;
+    // private _mongodb: MongoClient;
     private _git = require('nodegit');
     private _csv = require('csvtojson');
     constructor() {
-        this._mongodb = require('mongodb').MongoClient;
+        // this._mongodb = require('mongodb').MongoClient;
         this.init();
     }
     async init(): Promise<void> {
@@ -36,8 +36,9 @@ export class ChadwickToMongo {
             console.log('removing repo...');
             await fs.remove( 'chadwick' );
             console.log( 'removed repo' );
+        } else {
+            console.log( 'skipping removal of repo' );
         }
-        console.log('skipping removal of repo');
     }
     async cloneRepo(): Promise<void> {
         await this.removeRepo();
@@ -49,7 +50,6 @@ export class ChadwickToMongo {
         const data: { collectionName: string, data: object[] } = { collectionName: collectionName, data: [] };
         const path = `chadwick/core/${collectionName}.csv`;
         const json = await this._csv().fromFile(path);
-        console.log(json);
         data.data = this.fixTypes(json);
         return data;
     }
@@ -60,11 +60,11 @@ export class ChadwickToMongo {
         const client = await this.connect();
         const db = client.db('chadwick');
         console.log('creating database...');
-        collectionNames.forEach( async c => {
-            const collectionObj = await this.convertCollectionToJson(c);
-            const collection = db.collection(c);
+        for (let collectionName of collectionNames) {
+            const collectionObj = await this.convertCollectionToJson(collectionName);
+            const collection = db.collection(collectionName);
             await collection.insertMany(collectionObj.data);
-        });
+        }
         console.log('Finished creating database');
         await client.close();
     }
@@ -73,6 +73,7 @@ export class ChadwickToMongo {
         const client = await this.connect();
         const db = client.db('chadwick');
         await db.dropDatabase();
+        await client.close();
         console.log('dropped database');
     }
     fixTypes(json: object[]): object[] {
