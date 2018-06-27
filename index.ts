@@ -1,7 +1,6 @@
 import { MongoClient } from 'mongodb';
 import 'nodegit';
 import * as fs from 'fs-extra';
-import 'csvtojson';
 
 export class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
