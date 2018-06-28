@@ -1,6 +1,6 @@
 {
   "name": "chadwick-to-mongo",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A utility to help take the Chadwick Bureau Baseball Databank repo and put it into MongoDB",
   "main": "index.js",
   "scripts": {
