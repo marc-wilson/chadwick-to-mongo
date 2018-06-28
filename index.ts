@@ -4,10 +4,16 @@ import * as fs from 'fs-extra';
 
 export class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
+    private readonly INDEX_COLUMNS: string[];
     private _git = require('nodegit');
     private _csv = require('csvtojson');
     constructor() {
         this.init();
+        this.INDEX_COLUMNS = [
+            'playerID',
+            'yearID',
+            'teamID'
+        ]
     }
     async init(): Promise<void> {
 
@@ -58,6 +64,12 @@ export class ChadwickToMongo {
             const collectionObj = await this.convertCollectionToJson(collectionName);
             const collection = db.collection(collectionName);
             await collection.insertMany(collectionObj.data);
+            const columnsToIndex = this.getIndexColumns(collectionObj.data);
+            if (columnsToIndex) {
+                console.log('creating indexes...');
+                await collection.createIndex(columnsToIndex);
+                console.log('finished creating indexes');
+            }
         }
         console.log('Finished creating database');
         await client.close();
@@ -90,6 +102,27 @@ export class ChadwickToMongo {
                 return Number(val);
             } else {
                 return val;
+            }
+        } else {
+            return null;
+        }
+    }
+    getIndexColumns(data: object[]): any {
+        if (data) {
+            const firstRecord = data[0];
+            const columns: any = {};
+            for ( const key in firstRecord ) {
+                if ( firstRecord.hasOwnProperty( key ) ) {
+                    const match = this.INDEX_COLUMNS.find( f => f === key );
+                    if ( match ) {
+                        columns[ key ] = 1;
+                    }
+                }
+            }
+            if ( Object.keys( columns ).length > 0 ) {
+                return columns;
+            } else {
+                return null;
             }
         } else {
             return null;
