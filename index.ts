@@ -66,9 +66,17 @@ export class ChadwickToMongo {
             await collection.insertMany(collectionObj.data);
             const columnsToIndex = this.getIndexColumns(collectionObj.data);
             if (columnsToIndex) {
-                console.log('creating indexes...');
+                console.log(`creating indexes for ${collectionName}...`);
                 await collection.createIndex(columnsToIndex);
-                console.log('finished creating indexes');
+                console.log(`finished creating indexes for ${collectionName}`);
+            }
+            if (collectionName === 'people') {
+                console.log(`creating text indexes for ${collectionName}...`);
+                await collection.createIndex({
+                    nameFirst: 'text',
+                    nameLast: 'text'
+                });
+                console.log(`finished creating text indexes for ${collectionName}`);
             }
         }
         console.log('Finished creating database');
