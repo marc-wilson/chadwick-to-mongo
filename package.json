@@ -4,6 +4,7 @@
   "description": "A utility to help take the Chadwick Bureau Baseball Databank repo and put it into MongoDB",
   "main": "index.js",
   "scripts": {
+    "postinstall": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
