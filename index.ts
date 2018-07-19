@@ -138,4 +138,4 @@ export class ChadwickToMongo {
     }
 }
 
-export default new ChadwickToMongo();
+export default ChadwickToMongo;
