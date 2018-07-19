@@ -4,7 +4,7 @@
   "description": "A utility to help take the Chadwick Bureau Baseball Databank repo and put it into MongoDB",
   "main": "index.js",
   "scripts": {
-    "postinstall": "tsc",
+    "postinstall": "tsc && webpack",
     "install": "npm run install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -14,14 +14,16 @@
     "csvtojson": "^2.0.4",
     "download-git-repo": "^1.0.2",
     "fs-extra": "^6.0.1",
-    "mongodb": "^3.0.10",
-    "nodegit": "^0.22.1"
+    "mongodb": "^3.0.10"
   },
   "devDependencies": {
     "@types/csvtojson": "^1.1.5",
     "@types/fs-extra": "^5.0.3",
     "@types/mongodb": "^3.0.21",
     "@types/node": "^10.3.6",
-    "@types/nodegit": "^0.22.3"
+    "@types/nodegit": "^0.22.3",
+    "copy-webpack-plugin": "^4.5.2",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
   }
 }
