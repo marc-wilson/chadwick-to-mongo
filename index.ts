@@ -137,5 +137,3 @@ export class ChadwickToMongo {
         }
     }
 }
-
-export default ChadwickToMongo;
