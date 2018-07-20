@@ -1,12 +1,11 @@
 import { MongoClient } from 'mongodb';
-import 'nodegit';
 import * as fs from 'fs-extra';
 
 export class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
     private readonly INDEX_COLUMNS: string[];
-    private _git = require('nodegit');
     private _csv = require('csvtojson');
+    public _download = require('download-git-repo');
     constructor() {
         this.init();
         this.INDEX_COLUMNS = [
@@ -40,11 +39,21 @@ export class ChadwickToMongo {
             console.log( 'skipping removal of repo' );
         }
     }
-    async cloneRepo(): Promise<void> {
-        await this.removeRepo();
-        console.log('cloning repo...');
-        const repo = await this._git.Clone('https://github.com/chadwickbureau/baseballdatabank.git', './chadwick');
-        console.log('repo cloned');
+    async cloneRepo(): Promise<boolean> {
+        return new Promise<boolean>( async (resolve, reject) => {
+            await this.removeRepo();
+            console.log('cloning repo...');
+            this._download('chadwickbureau/baseballdatabank', './chadwick', (err: any) => {
+                if (err) {
+                    console.log(err);
+                    reject(err);
+                } else {
+                    console.log('repo cloned');
+                    resolve(true);
+                }
+            });
+
+        });
     }
     async convertCollectionToJson(collectionName: string): Promise<{ collectionName: string, data: object[] }> {
         const data: { collectionName: string, data: object[] } = { collectionName: collectionName, data: [] };
@@ -137,5 +146,3 @@ export class ChadwickToMongo {
         }
     }
 }
-
-export default new ChadwickToMongo();
