@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import * as fs from 'fs-extra';
 
-export class ChadwickToMongo {
+class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
     private readonly INDEX_COLUMNS: string[];
     private _csv = require('csvtojson');
@@ -146,3 +146,5 @@ export class ChadwickToMongo {
         }
     }
 }
+
+export { ChadwickToMongo }
