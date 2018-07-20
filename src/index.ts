@@ -24,6 +24,7 @@ export class ChadwickToMongo {
 
         // TODO: Step 3: Create Database with Collections
         await this.createDatabase();
+
     }
     async connect(): Promise<MongoClient> {
         const client = await MongoClient.connect(`${this.MONGODB_PATH}`);
