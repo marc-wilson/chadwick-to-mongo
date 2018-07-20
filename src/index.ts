@@ -147,4 +147,4 @@ class ChadwickToMongo {
     }
 }
 
-module.exports = ChadwickToMongo;
+export default ChadwickToMongo;
