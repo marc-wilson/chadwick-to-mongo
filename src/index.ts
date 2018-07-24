@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import * as fs from 'fs-extra';
 
-class ChadwickToMongo {
+export class ChadwickToMongo {
     private readonly MONGODB_PATH = 'mongodb://localhost:27017';
     private readonly INDEX_COLUMNS: string[];
     private _csv = require('csvtojson');
@@ -24,6 +24,7 @@ class ChadwickToMongo {
 
         // TODO: Step 3: Create Database with Collections
         await this.createDatabase();
+
     }
     async connect(): Promise<MongoClient> {
         const client = await MongoClient.connect(`${this.MONGODB_PATH}`);
@@ -146,5 +147,3 @@ class ChadwickToMongo {
         }
     }
 }
-
-export default ChadwickToMongo;
