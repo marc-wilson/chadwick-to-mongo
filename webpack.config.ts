@@ -1,13 +1,23 @@
 // import * as webpack from 'webpack';
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     plugins: [
         // new webpack.IgnorePlugin(/nodegit/)
+        new CopyWebpackPlugin([
+            {
+                from: 'package.json',
+                to: 'package.json',
+                toType: 'file'
+            }
+        ])
     ],
-    entry: './src/index.js',
+    entry: {
+        index: './src/index.js'
+    },
     output: {
         path: __dirname + '/dist',
-        filename: 'index.js'
+        filename: '[name].js'
     },
     target: 'node'
 }
