@@ -10,6 +10,13 @@ module.exports = {
                 to: 'package.json',
                 toType: 'file'
             }
+        ]),
+        new CopyWebpackPlugin([
+            {
+                from: 'README.md',
+                to: 'README.md',
+                toType: 'file'
+            }
         ])
     ],
     entry: {
