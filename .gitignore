@@ -1,5 +1,5 @@
 *.js
-*.map.js
+*.js.map
 *.DS_Store
 *.idea
 node_modules
