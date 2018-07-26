@@ -1,8 +1,3 @@
-### Update
-
-I am currently trying to get this packaged up into a proper module so that is more flexible and usable. It's just the whole demistifying webpack thing...
-
-
 ## Chadwick Bureau Baseball Databank to MongoDB Utility
 [Chadwick Bureau Baseball Databank](https://github.com/chadwickbureau/baseballdatabank "Chadwick Bureau Baseball Databank").
 
