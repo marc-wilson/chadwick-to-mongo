@@ -1,27 +1,36 @@
 {
   "name": "chadwick-to-mongo",
-  "version": "1.1.8",
+  "version": "1.2.6",
   "description": "A utility to help take the Chadwick Bureau Baseball Databank repo and put it into MongoDB",
-  "main": "dist/index.js",
+  "main": "lib/index",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "files": [
+    "lib"
+  ],
+  "author": "Marc Wilson",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mswilson4040/chadwick-to-mongo"
+  },
+  "bugs": {
+    "url": "https://github.com/mswilson4040/chadwick-to-mongo/issues"
+  }
   "license": "ISC",
   "dependencies": {
-    "csvtojson": "^2.0.4",
+    "csvtojson": "^2.0.7",
     "download-git-repo": "^1.0.2",
     "fs-extra": "^6.0.1",
-    "mongodb": "^3.0.10"
+    "mongodb": "^3.1.1"
   },
   "devDependencies": {
     "@types/csvtojson": "^1.1.5",
-    "@types/fs-extra": "^5.0.3",
-    "@types/mongodb": "^3.0.21",
-    "@types/node": "^10.3.6",
-    "@types/nodegit": "^0.22.3",
-    "copy-webpack-plugin": "^4.5.2",
-    "webpack": "^4.16.1",
-    "webpack-cli": "^3.1.0"
+    "@types/es6-promise": "^3.3.0",
+    "@types/fs-extra": "^5.0.4",
+    "@types/mongodb": "^3.1.2",
+    "@types/node": "^10.5.3",
+    "@types/nodegit": "^0.22.3"
   }
 }

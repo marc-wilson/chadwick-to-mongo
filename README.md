@@ -5,16 +5,36 @@ I am currently trying to get this packaged up into a proper module so that is mo
 
 ## Chadwick Bureau Baseball Databank to MongoDB Utility
 [Chadwick Bureau Baseball Databank](https://github.com/chadwickbureau/baseballdatabank "Chadwick Bureau Baseball Databank").
+
 [GitHub](https://github.com/mswilson4040/chadwick-to-mongo "GitHub").
 
-### Run Script
-1. Clone Repo
-2. `npm install`
-3. Start MongoDB Server
-4. Compile TypeScript to JavaScript (`tsc`)
-5. Run `node index.js`
+### Install
+
+`npm install chadwick-to-mongo --save`
 
 
-This will clone the Chadwick Bureau Basenall Databank Repository locally. Then, it will find the existing database and drop it. Once it's dropped, it will convert all the csv files to json and create the database and it's collections accordingly.
+### Usage
+
+##### With a config
+    
+
+    import { ChadwickConfig, ChadwickToMongo } from 'chadwick-to-mongo/lib';
+    
+    const config = new ChadwickConfig('mongodb://localhost:27017', 'chadwick', 'chadwick');
+    const ctm = new ChadwickToMongo(config);
+    ctm.init();
+    
+##### Without a config
+    
+
+    import { ChadwickConfig, ChadwickToMongo } from 'chadwick-to-mongo/lib';
+    
+    const ctm = new ChadwickToMongo();
+    ctm.init();
+
+    
+
+
+This will clone the Chadwick Bureau Baseball Databank Repository locally. Then, it will find the existing database and drop it. Once it's dropped, it will convert all the csv files to json and create the database and it's collections accordingly.
 
 
