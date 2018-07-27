@@ -1,8 +1,19 @@
 {
   "name": "chadwick-to-mongo",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "A utility to help take the Chadwick Bureau Baseball Databank repo and put it into MongoDB",
   "main": "lib/index",
+  "keywords": [
+    "mongo",
+    "mongodb",
+    "mongo-db",
+    "chadwick",
+    "baseball",
+    "mlb",
+    "data",
+    "typescript",
+    "utility"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
