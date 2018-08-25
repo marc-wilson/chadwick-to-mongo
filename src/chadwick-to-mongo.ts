@@ -88,6 +88,11 @@ export class ChadwickToMongo implements IChadwickToMongo {
         for (let collectionName of collectionNames) {
             const collectionObj = await this.convertCollectionToJson(collectionName);
             const collection = db.collection(collectionName);
+            if (collectionName === 'people') {
+                for (const record of collectionObj.data) {
+                    record['fullName'] = `${record['nameFirst']} ${record['nameLast']}`;
+                }
+            }
             await collection.insertMany(collectionObj.data);
             const columnsToIndex = this.getIndexColumns(collectionObj.data);
             if (columnsToIndex) {
@@ -98,8 +103,7 @@ export class ChadwickToMongo implements IChadwickToMongo {
             if (collectionName === 'people') {
                 console.log(`creating text indexes for ${collectionName}...`);
                 await collection.createIndex({
-                    nameFirst: 'text',
-                    nameLast: 'text'
+                    fullName: 'text'
                 });
                 console.log(`finished creating text indexes for ${collectionName}`);
             }
