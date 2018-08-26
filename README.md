@@ -26,7 +26,7 @@ Pull requests, bugs, features and general questions are welcome.
 ##### With a config
     
 
-    import { ChadwickConfig, ChadwickToMongo } from 'chadwick-to-mongo/lib';
+    import { ChadwickConfig, ChadwickToMongo } from 'chadwick-to-mongo/dist';
     
     const config = new ChadwickConfig('mongodb://localhost:27017', 'chadwick', 'chadwick');
     const ctm = new ChadwickToMongo(config);
@@ -35,7 +35,7 @@ Pull requests, bugs, features and general questions are welcome.
 ##### Without a config
     
 
-    import { ChadwickConfig, ChadwickToMongo } from 'chadwick-to-mongo/lib';
+    import { ChadwickConfig, ChadwickToMongo } from 'chadwick-to-mongo/dist';
     
     const ctm = new ChadwickToMongo();
     ctm.init();
