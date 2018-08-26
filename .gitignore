@@ -4,4 +4,4 @@
 *.idea
 node_modules
 chadwick
-lib
+dist
